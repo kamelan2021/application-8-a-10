@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 8 à 10</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background-color:#0e283b;
+            
+        }
+        div{
+            width: 80%;
+            margin: auto;
+            border: 2px solid ;
+            margin-top:30vh ;
+            padding: 10px 4px;
+            border-radius: 10px;
+        }
+        #message{
+            padding: 30px 0;
+            font-size: 2em;
+        }
+        form, h2{
+            text-align: center;
+            color: #fff;
+        }
+        #numero{
+            width: 80%;
+            font-size: 1.2em;
+            text-align: center;
+            height: 50px;
+            border-radius: 15px;
+            font-size: 1.2em;
+        }
+        #convertir{
+            width: 40%;
+            height: 40px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+        }
+        #numero::placeholder,#numero:focus{
+            text-align: center;
+            font-size: 1.5em;
+        }
+        @media (max-width:380px) {
+                #convertir{
+                width: auto;
+                height: 40px;
+                border-radius: 15px;
+                font-size: 1.2rem;
+            }
+            #numero{
+                width: 100%;
+                font-size: unset;
+                text-align: center;
+                height: 50px;
+                border-radius: 15px;
+                
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="couleurReseau">
+        <h2> Convertissez vos numeros à huit <br> chiffres en 10 en un click </h2>
+        <form action="" onsubmit="return conversion()">
+            <input type="text" id="numero" placeholder="Entrer ici votre numero à convertir"> <br> 
+            <span id='message'></span> <br>
+            <input type="submit" value="Convertir" id="convertir">
+        </form>
+    </div>
+    
+
+    <script>
+        var orange = ['07','08','09','47','48','49','57','58','59','67','68','69', '77','78','79', '87','88','89','97','98'];
+
+        var moov = ['01','02','03', '40','41','42','43','50', '51','52','53','70', '71','72','73'];
+
+        var mtn = ['04','05','06','44','45','46','54','55','56','64','65','66','74','75','76','84','85','86','94','95','96'];
+
+        function conversion(){
+            var numero = document.getElementById('numero').value;
+            var couleurReseau = document.getElementById('couleurReseau');
+            var longueurNumero = numero.length;
+            var deuxPremierChiffre = numero[0]+numero[1];
+            var indicatifOrange = '07';
+            var indicatifMtn = '05';
+            var indicatifMoov = '01';
+            if(numero ==""){
+                document.getElementById('numero').style.borderColor = 'red';
+                document.getElementById('message').textContent = "Vous devez saisir un numéro";
+                document.getElementById('message').style.color = "red";
+                couleurReseau.style.backgroundColor = '#85a9e6';
+                return false;
+            }
+            if(isNaN(numero)){
+                document.getElementById('numero').style.borderColor = 'red'; 
+                document.getElementById('message').textContent = "Vous devez saisir que des chiffres";
+                document.getElementById('message').style.color = "red";
+                couleurReseau.style.backgroundColor = '#85a9e6';
+                return false;  
+            }
+            if(longueurNumero < 8 || longueurNumero > 8){
+                document.getElementById('numero').style.borderColor = 'red'; 
+                document.getElementById('message').textContent = "ce numéros n'est pas à huit (8) chiffres";
+                document.getElementById('message').style.color = "red";
+                couleurReseau.style.backgroundColor = '#85a9e6';
+                return false;  
+            }
+            if(longueurNumero == 8 && orange.includes(deuxPremierChiffre)){
+                document.getElementById('numero').style.borderColor = 'red'; 
+                document.getElementById('message').textContent = 'Numéro à 10 chiffres :'  + indicatifOrange+numero;
+                document.getElementById('message').style.color = "#FFF";
+                couleurReseau.style.backgroundColor = 'orange';
+                return false;  
+            }
+
+            if(longueurNumero == 8 && mtn.includes(deuxPremierChiffre)){
+                document.getElementById('numero').style.borderColor = 'red'; 
+                document.getElementById('message').textContent = indicatifMtn+numero;
+                document.getElementById('message').style.color = "#FFF";
+                couleurReseau.style.backgroundColor = '#f5d20d';
+                return false;  
+            }
+            if(longueurNumero == 8 && moov.includes(deuxPremierChiffre)){
+                document.getElementById('numero').style.outlineColor = 'red'; 
+                document.getElementById('message').textContent = indicatifMoov+numero;
+                document.getElementById('message').style.color = "#FFF";
+                couleurReseau.style.backgroundColor = '#d2f50d';
+                return false;  
+            }
+            if(longueurNumero == 8 && orange.includes(deuxPremierChiffre)==false
+                && mtn.includes(deuxPremierChiffre)==false && moov.includes(deuxPremierChiffre)==false){
+                    document.getElementById('message').textContent = 'identificateur inexistant';
+                    document.getElementById('message').style.color = "#FFF";
+                    couleurReseau.style.backgroundColor = '#85a9e6';
+                    return false;  
+                }
+            
+        }
+        
+    </script>
+
+</body>
+</html>
