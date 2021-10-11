@@ -22,7 +22,6 @@
             border-radius: 10px;
         }
         #message{
-            padding: 30px 0;
             font-size: 2em;
         }
         form, h2{
@@ -47,6 +46,7 @@
             text-align: center;
             font-size: 1.5em;
         }
+        
         @media (max-width:380px) {
                 #convertir{
                 width: auto;
@@ -56,12 +56,17 @@
             }
             #numero{
                 width: 100%;
-                font-size: unset;
+                /* font-size: unset; */
                 text-align: center;
                 height: 50px;
                 border-radius: 15px;
-                
             }
+            #numero::placeholder,#numero:focus{
+            text-align: center;
+            font-size: 1.2em;
+        }
+        
+
         }
     </style>
 </head>
@@ -122,14 +127,14 @@
 
             if(longueurNumero == 8 && mtn.includes(deuxPremierChiffre)){
                 document.getElementById('numero').style.borderColor = 'red'; 
-                document.getElementById('message').textContent = indicatifMtn+numero;
+                document.getElementById('message').textContent = 'Numéro à 10 chiffres :' + indicatifMtn+numero;
                 document.getElementById('message').style.color = "#FFF";
                 couleurReseau.style.backgroundColor = '#f5d20d';
                 return false;  
             }
             if(longueurNumero == 8 && moov.includes(deuxPremierChiffre)){
                 document.getElementById('numero').style.outlineColor = 'red'; 
-                document.getElementById('message').textContent = indicatifMoov+numero;
+                document.getElementById('message').textContent = 'Numéro à 10 chiffres :' + indicatifMoov+numero;
                 document.getElementById('message').style.color = "#FFF";
                 couleurReseau.style.backgroundColor = '#d2f50d';
                 return false;  
